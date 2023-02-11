@@ -50,8 +50,12 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction updateTransaction(long id, long customerId, int expense, Timestamp timestamp) {
         Optional<Transaction> transaction = transactionRepository.findById(id);
-        if (!transaction.isPresent()) {
+        if (transaction.isEmpty()) {
             throw new TransactionNotFoundException(String.format("Transaction with id %d not found", id));
+        }
+        Optional<Customer> customer = customerRepository.findById(customerId);
+        if (customer.isEmpty()) {
+            throw new CustomerNotFoundException(String.format("Customer with id %d not found", id));
         }
         Transaction existingTransaction = transaction.get();
         existingTransaction.setCustomerId(customerId);

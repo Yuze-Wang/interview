@@ -21,7 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{id}/pointsPerMonth")
-    public ResponseEntity<int[]> getPointsPerMonth(@PathVariable long id) throws CustomerNotFoundException {
+    public ResponseEntity<int[]> getCustomerPointsPerMonth(@PathVariable long id) throws CustomerNotFoundException {
         int[] pointsPerMonth = customerService.getPointsPerMonth(id);
         return new ResponseEntity<>(pointsPerMonth, HttpStatus.OK);
     }

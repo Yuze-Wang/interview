@@ -7,7 +7,7 @@ import com.example.interview.model.Customer;
 import java.util.List;
 
 public interface CustomerService {
-    int[] getPointsPerMonth(Long id);
+    int[] getPointsPerMonth(long id);
     int getPoints(Long id) throws CustomerNotFoundException;
     Customer getCustomerById(long id) throws CustomerNotFoundException;
     Customer saveCustomer(String name, int age) throws InvalidAgeException;

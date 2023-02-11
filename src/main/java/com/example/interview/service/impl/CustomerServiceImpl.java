@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int[] getPointsPerMonth(Long id) {
+    public int[] getPointsPerMonth(long id) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer not found with id: " + id));
         return decodePointsPerMonth(customer.getPointsPerMonth());
     }
@@ -47,8 +47,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(long customerId, String name, int age) {
-        Customer customer = getCustomerById(customerId);
+    public Customer updateCustomer(long id, String name, int age) {
+        Customer customer = getCustomerById(id);
         if (age <= 0 || age >= 200) {
             throw new InvalidAgeException("Invalid age: " + age);
         }
@@ -61,8 +61,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(long customerId) {
-        Customer customer = getCustomerById(customerId);
+    public void deleteCustomer(long id) {
+        Customer customer = getCustomerById(id);
         customerRepository.delete(customer);
     }
 }
